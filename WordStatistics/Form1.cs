@@ -686,6 +686,89 @@ namespace WordStatistics
             e.Row.HeaderCell.Value = (e.Row.Index + 1).ToString();
             
         }
+
+        private void btn_spellCheck_Click(object sender, EventArgs e)
+        {
+            string wordA = txb_wordA.Text;
+            string wordB = txb_wordB.Text;
+            char[] word1 = wordA.ToCharArray();
+            char[] word2 = wordB.ToCharArray();
+            int[,] ed = new int[word1.Length,word2.Length];//编辑距离数组
+            for (int i = 0; i < word1.Length; i++)
+            {
+                for (int j = 0; j < word2.Length; j++)
+                {
+                    
+                    if (word1[i]!=word2[j])
+                    {//当前字符不相等
+                        //边界处理：对于A[j]≠B[k]若j = 1且k≠1则f[j, k] = f[j, k - 1] + 1若k = 1且j≠1则f[j, k] = f[j - 1, k] + 1若j = 1且k = 1则f[1, 1] = 1
+                        if (i == 0 && j != 0)
+                        {
+                            ed[i, j] = ed[i, j - 1] + 1;
+                        }
+                        else if (i!=0&&j==0)
+                        {
+                            ed[i, j] = ed[i - 1, j] + 1;
+                        }
+                        else if (i == 0 && j == 0)
+                        {
+                            ed[0, 0] = 1;
+                        }
+                        else
+                        {
+                            //若A[j]≠B[k]则f[j, k]为f[j - 1, k - 1]、f[j - 1, k]、f[j, k - 1]三个数中最小数 + 1
+                            if (ed[i-1,j-1]<=ed[i-1,j]&& ed[i - 1, j - 1] <= ed[i, j - 1])
+                            {
+                                ed[i, j] = ed[i - 1, j - 1] + 1;
+                            }
+                            if (ed[i - 1, j] <= ed[i - 1, j - 1] && ed[i - 1, j] <= ed[i, j - 1])
+                            {
+                                ed[i, j] = ed[i - 1, j] + 1;
+                            }
+                            if (ed[i, j - 1] <= ed[i - 1, j-1] && ed[i, j - 1] <= ed[i - 1, j])
+                            {
+                                ed[i, j] = ed[i, j - 1] + 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //边界处理：对于A[j] = B[k]若j = 1且k≠1则f[j, k] = f[j, k - 1]若k = 1且j≠1则f[j, k] = f[j - 1, k]若k = 1且j = 1则f[1, 1] = 0
+                        if (i == 0&&j!=0)
+                        {
+                            ed[i, j] = ed[i, j-1];
+                        }
+                        else if (i != 0 && j == 0)
+                        {
+                            ed[i, j] = ed[i-1, j];
+                        }
+                        else if (i == 0 && j == 0)
+                        {
+                            ed[0, 0] = 0;
+                        }
+                        else
+                        {
+                            //若A[j] = B[k]则f[j, k] = f[j - 1, k - 1]
+                            ed[i, j] = ed[i - 1, j - 1];
+                        }
+                    }
+                }
+            }
+            lab_result.Visible = true;
+            if (ed[word1.Length-1, word2.Length-1]==0)
+            {
+                lab_result.Text = "这两个单词的编辑距离为0,是相同的单词";
+            }
+            else
+            {
+                lab_result.Text = "这两个单词是不同的单词，其编辑距离为" + ed[word1.Length-1, word2.Length-1];
+            }
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

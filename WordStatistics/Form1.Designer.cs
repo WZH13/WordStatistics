@@ -43,12 +43,25 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.addrulebtn = new System.Windows.Forms.Button();
             this.regulartxb = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txb_wordA = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txb_wordB = new System.Windows.Forms.TextBox();
+            this.btn_spellCheck = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
+            this.lab_result = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // chosebtn
             // 
-            this.chosebtn.Location = new System.Drawing.Point(22, 15);
+            this.chosebtn.Location = new System.Drawing.Point(32, 21);
             this.chosebtn.Name = "chosebtn";
             this.chosebtn.Size = new System.Drawing.Size(75, 23);
             this.chosebtn.TabIndex = 0;
@@ -58,7 +71,7 @@
             // 
             // statisticsbtn
             // 
-            this.statisticsbtn.Location = new System.Drawing.Point(250, 15);
+            this.statisticsbtn.Location = new System.Drawing.Point(260, 21);
             this.statisticsbtn.Name = "statisticsbtn";
             this.statisticsbtn.Size = new System.Drawing.Size(75, 23);
             this.statisticsbtn.TabIndex = 1;
@@ -68,7 +81,7 @@
             // 
             // rulebtn
             // 
-            this.rulebtn.Location = new System.Drawing.Point(490, 12);
+            this.rulebtn.Location = new System.Drawing.Point(500, 18);
             this.rulebtn.Name = "rulebtn";
             this.rulebtn.Size = new System.Drawing.Size(88, 23);
             this.rulebtn.TabIndex = 2;
@@ -83,7 +96,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "叠词（型如AABB）",
             "回文（型如abccba）"});
-            this.comboBox1.Location = new System.Drawing.Point(363, 15);
+            this.comboBox1.Location = new System.Drawing.Point(373, 21);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 3;
@@ -93,7 +106,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(240, 54);
+            this.dataGridView1.Location = new System.Drawing.Point(257, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.RowTemplate.Height = 23;
@@ -106,7 +119,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(22, 54);
+            this.listBox1.Location = new System.Drawing.Point(39, 62);
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBox1.Size = new System.Drawing.Size(212, 328);
@@ -114,7 +127,7 @@
             // 
             // deletebtn
             // 
-            this.deletebtn.Location = new System.Drawing.Point(22, 404);
+            this.deletebtn.Location = new System.Drawing.Point(43, 423);
             this.deletebtn.Name = "deletebtn";
             this.deletebtn.Size = new System.Drawing.Size(86, 23);
             this.deletebtn.TabIndex = 8;
@@ -124,7 +137,7 @@
             // 
             // clearbtn
             // 
-            this.clearbtn.Location = new System.Drawing.Point(130, 403);
+            this.clearbtn.Location = new System.Drawing.Point(151, 422);
             this.clearbtn.Name = "clearbtn";
             this.clearbtn.Size = new System.Drawing.Size(91, 23);
             this.clearbtn.TabIndex = 9;
@@ -134,7 +147,7 @@
             // 
             // savebtn
             // 
-            this.savebtn.Location = new System.Drawing.Point(739, 403);
+            this.savebtn.Location = new System.Drawing.Point(760, 424);
             this.savebtn.Name = "savebtn";
             this.savebtn.Size = new System.Drawing.Size(87, 23);
             this.savebtn.TabIndex = 10;
@@ -144,7 +157,7 @@
             // 
             // closebtn
             // 
-            this.closebtn.Location = new System.Drawing.Point(857, 404);
+            this.closebtn.Location = new System.Drawing.Point(878, 425);
             this.closebtn.Name = "closebtn";
             this.closebtn.Size = new System.Drawing.Size(82, 23);
             this.closebtn.TabIndex = 11;
@@ -155,7 +168,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(317, 413);
+            this.label1.Location = new System.Drawing.Point(418, 430);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 13;
@@ -165,7 +178,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(130, 19);
+            this.checkBox1.Location = new System.Drawing.Point(140, 25);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(84, 16);
             this.checkBox1.TabIndex = 14;
@@ -174,7 +187,7 @@
             // 
             // addrulebtn
             // 
-            this.addrulebtn.Location = new System.Drawing.Point(833, 15);
+            this.addrulebtn.Location = new System.Drawing.Point(843, 21);
             this.addrulebtn.Name = "addrulebtn";
             this.addrulebtn.Size = new System.Drawing.Size(117, 23);
             this.addrulebtn.TabIndex = 4;
@@ -184,36 +197,140 @@
             // 
             // regulartxb
             // 
-            this.regulartxb.Location = new System.Drawing.Point(607, 14);
+            this.regulartxb.Location = new System.Drawing.Point(617, 20);
             this.regulartxb.Name = "regulartxb";
             this.regulartxb.Size = new System.Drawing.Size(220, 21);
             this.regulartxb.TabIndex = 12;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(-2, -2);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1001, 506);
+            this.tabControl1.TabIndex = 15;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.addrulebtn);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.checkBox1);
+            this.tabPage1.Controls.Add(this.closebtn);
+            this.tabPage1.Controls.Add(this.savebtn);
+            this.tabPage1.Controls.Add(this.chosebtn);
+            this.tabPage1.Controls.Add(this.clearbtn);
+            this.tabPage1.Controls.Add(this.statisticsbtn);
+            this.tabPage1.Controls.Add(this.deletebtn);
+            this.tabPage1.Controls.Add(this.regulartxb);
+            this.tabPage1.Controls.Add(this.rulebtn);
+            this.tabPage1.Controls.Add(this.listBox1);
+            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(993, 480);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "文字统计工具";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.lab_result);
+            this.tabPage2.Controls.Add(this.btn_close);
+            this.tabPage2.Controls.Add(this.btn_spellCheck);
+            this.tabPage2.Controls.Add(this.txb_wordB);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.txb_wordA);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(993, 480);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "英语单词拼写检查";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txb_wordA
+            // 
+            this.txb_wordA.Location = new System.Drawing.Point(297, 103);
+            this.txb_wordA.Name = "txb_wordA";
+            this.txb_wordA.Size = new System.Drawing.Size(139, 21);
+            this.txb_wordA.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(239, 111);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "单词A";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(545, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "单词B";
+            // 
+            // txb_wordB
+            // 
+            this.txb_wordB.Location = new System.Drawing.Point(601, 103);
+            this.txb_wordB.Name = "txb_wordB";
+            this.txb_wordB.Size = new System.Drawing.Size(139, 21);
+            this.txb_wordB.TabIndex = 3;
+            // 
+            // btn_spellCheck
+            // 
+            this.btn_spellCheck.Location = new System.Drawing.Point(395, 302);
+            this.btn_spellCheck.Name = "btn_spellCheck";
+            this.btn_spellCheck.Size = new System.Drawing.Size(75, 23);
+            this.btn_spellCheck.TabIndex = 4;
+            this.btn_spellCheck.Text = "拼写检查";
+            this.btn_spellCheck.UseVisualStyleBackColor = true;
+            this.btn_spellCheck.Click += new System.EventHandler(this.btn_spellCheck_Click);
+            // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(496, 302);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(75, 23);
+            this.btn_close.TabIndex = 5;
+            this.btn_close.Text = "退出系统";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // lab_result
+            // 
+            this.lab_result.AutoSize = true;
+            this.lab_result.Location = new System.Drawing.Point(455, 198);
+            this.lab_result.Name = "lab_result";
+            this.lab_result.Size = new System.Drawing.Size(65, 12);
+            this.lab_result.TabIndex = 6;
+            this.lab_result.Text = "lab_result";
+            this.lab_result.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 451);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.regulartxb);
-            this.Controls.Add(this.closebtn);
-            this.Controls.Add(this.savebtn);
-            this.Controls.Add(this.clearbtn);
-            this.Controls.Add(this.deletebtn);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.addrulebtn);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.rulebtn);
-            this.Controls.Add(this.statisticsbtn);
-            this.Controls.Add(this.chosebtn);
+            this.ClientSize = new System.Drawing.Size(995, 502);
+            this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "文字统计工具";
+            this.Text = "自然语言处理";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -233,6 +350,16 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button addrulebtn;
         private System.Windows.Forms.TextBox regulartxb;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.Button btn_spellCheck;
+        private System.Windows.Forms.TextBox txb_wordB;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txb_wordA;
+        private System.Windows.Forms.Label lab_result;
     }
 }
 
