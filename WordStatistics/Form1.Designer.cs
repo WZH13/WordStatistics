@@ -46,17 +46,22 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txb_wordA = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txb_wordB = new System.Windows.Forms.TextBox();
-            this.btn_spellCheck = new System.Windows.Forms.Button();
-            this.btn_close = new System.Windows.Forms.Button();
             this.lab_result = new System.Windows.Forms.Label();
+            this.btn_close = new System.Windows.Forms.Button();
+            this.btn_spellCheck = new System.Windows.Forms.Button();
+            this.txb_wordB = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txb_wordA = new System.Windows.Forms.TextBox();
+            this.lab_road = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // chosebtn
@@ -238,13 +243,9 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lab_result);
+            this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.btn_close);
-            this.tabPage2.Controls.Add(this.btn_spellCheck);
-            this.tabPage2.Controls.Add(this.txb_wordB);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.txb_wordA);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -253,51 +254,19 @@
             this.tabPage2.Text = "英语单词拼写检查";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txb_wordA
+            // lab_result
             // 
-            this.txb_wordA.Location = new System.Drawing.Point(297, 103);
-            this.txb_wordA.Name = "txb_wordA";
-            this.txb_wordA.Size = new System.Drawing.Size(139, 21);
-            this.txb_wordA.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(239, 111);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "单词A";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(545, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "单词B";
-            // 
-            // txb_wordB
-            // 
-            this.txb_wordB.Location = new System.Drawing.Point(601, 103);
-            this.txb_wordB.Name = "txb_wordB";
-            this.txb_wordB.Size = new System.Drawing.Size(139, 21);
-            this.txb_wordB.TabIndex = 3;
-            // 
-            // btn_spellCheck
-            // 
-            this.btn_spellCheck.Location = new System.Drawing.Point(395, 302);
-            this.btn_spellCheck.Name = "btn_spellCheck";
-            this.btn_spellCheck.Size = new System.Drawing.Size(75, 23);
-            this.btn_spellCheck.TabIndex = 4;
-            this.btn_spellCheck.Text = "拼写检查";
-            this.btn_spellCheck.UseVisualStyleBackColor = true;
-            this.btn_spellCheck.Click += new System.EventHandler(this.btn_spellCheck_Click);
+            this.lab_result.AutoSize = true;
+            this.lab_result.Location = new System.Drawing.Point(28, 49);
+            this.lab_result.Name = "lab_result";
+            this.lab_result.Size = new System.Drawing.Size(65, 12);
+            this.lab_result.TabIndex = 6;
+            this.lab_result.Text = "lab_result";
+            this.lab_result.Visible = false;
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(496, 302);
+            this.btn_close.Location = new System.Drawing.Point(890, 447);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(75, 23);
             this.btn_close.TabIndex = 5;
@@ -305,15 +274,82 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // lab_result
+            // btn_spellCheck
             // 
-            this.lab_result.AutoSize = true;
-            this.lab_result.Location = new System.Drawing.Point(455, 198);
-            this.lab_result.Name = "lab_result";
-            this.lab_result.Size = new System.Drawing.Size(65, 12);
-            this.lab_result.TabIndex = 6;
-            this.lab_result.Text = "lab_result";
-            this.lab_result.Visible = false;
+            this.btn_spellCheck.Location = new System.Drawing.Point(114, 229);
+            this.btn_spellCheck.Name = "btn_spellCheck";
+            this.btn_spellCheck.Size = new System.Drawing.Size(75, 23);
+            this.btn_spellCheck.TabIndex = 4;
+            this.btn_spellCheck.Text = "拼写检查";
+            this.btn_spellCheck.UseVisualStyleBackColor = true;
+            this.btn_spellCheck.Click += new System.EventHandler(this.btn_spellCheck_Click);
+            // 
+            // txb_wordB
+            // 
+            this.txb_wordB.Location = new System.Drawing.Point(114, 153);
+            this.txb_wordB.Name = "txb_wordB";
+            this.txb_wordB.Size = new System.Drawing.Size(139, 21);
+            this.txb_wordB.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(58, 162);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "单词B";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(58, 77);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "单词A";
+            // 
+            // txb_wordA
+            // 
+            this.txb_wordA.Location = new System.Drawing.Point(116, 69);
+            this.txb_wordA.Name = "txb_wordA";
+            this.txb_wordA.Size = new System.Drawing.Size(139, 21);
+            this.txb_wordA.TabIndex = 0;
+            // 
+            // lab_road
+            // 
+            this.lab_road.AutoSize = true;
+            this.lab_road.Location = new System.Drawing.Point(28, 90);
+            this.lab_road.Name = "lab_road";
+            this.lab_road.Size = new System.Drawing.Size(53, 12);
+            this.lab_road.TabIndex = 7;
+            this.lab_road.Text = "lab_road";
+            this.lab_road.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txb_wordB);
+            this.groupBox1.Controls.Add(this.btn_spellCheck);
+            this.groupBox1.Controls.Add(this.txb_wordA);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(92, 61);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(285, 287);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "单词输入";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lab_result);
+            this.groupBox2.Controls.Add(this.lab_road);
+            this.groupBox2.Location = new System.Drawing.Point(471, 61);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(413, 287);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "结果显示";
             // 
             // Form1
             // 
@@ -329,7 +365,10 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -360,6 +399,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txb_wordA;
         private System.Windows.Forms.Label lab_result;
+        private System.Windows.Forms.Label lab_road;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

@@ -21,6 +21,8 @@ namespace WordStatistics
             InitializeComponent();
         }
 
+        #region 文字统计工具
+
         /// <summary>
         /// 要进行统计的文件列表
         /// </summary>
@@ -143,7 +145,6 @@ namespace WordStatistics
             this.Close();
         }
 
-
         /// <summary>
         /// 文档中的汉字字符串
         /// </summary>
@@ -183,7 +184,6 @@ namespace WordStatistics
 
             }
         }
-
 
         /// <summary>
         /// 打开文件读取字符串
@@ -267,7 +267,6 @@ namespace WordStatistics
 
         }
 
-
         /// <summary>
         /// 返回字数
         /// </summary>
@@ -302,7 +301,6 @@ namespace WordStatistics
             return "";
         }
 
-
         /// <summary>
         /// 返回字数
         /// </summary>
@@ -319,7 +317,6 @@ namespace WordStatistics
                 return 0;
             }
         }
-
 
         /// <summary>
         /// 返回字节数
@@ -344,7 +341,6 @@ namespace WordStatistics
             return byteLength;
         }
 
-
         /// <summary>
         /// 统计字频返回字典
         /// </summary>
@@ -366,7 +362,6 @@ namespace WordStatistics
             }
             return dic;
         }
-
 
         /// <summary>
         /// 按选定的规则统计
@@ -398,7 +393,6 @@ namespace WordStatistics
             }
 
         }
-
 
         /// <summary>
         /// 查找字符串中所有的回文，并统计频次
@@ -446,7 +440,6 @@ namespace WordStatistics
             }
         }
 
-
         /// <summary>
         /// 判断字符串是否为回文字符串  
         /// </summary>
@@ -457,7 +450,6 @@ namespace WordStatistics
                     return false;
             return true;
         }
-
 
         /// <summary>
         /// 匹配字符串中所有符合规则的词，并统计频次。并绑定DataGridView数据
@@ -508,7 +500,6 @@ namespace WordStatistics
             }
         }
 
-
         /// <summary>
         /// 按textbox中的正则表达式统计
         /// </summary>
@@ -521,7 +512,6 @@ namespace WordStatistics
             ruleMatch(fullTxetStr, newPattern);
         }
 
-
         /// <summary>
         /// 保存统计结果
         /// </summary>
@@ -531,7 +521,6 @@ namespace WordStatistics
         {
             setExcel(dataGridView1);
         }
-
 
         /// <summary>
         /// 将DataGridView的数据导入到Excel中
@@ -610,7 +599,6 @@ namespace WordStatistics
             }
         }
 
-
         /// <summary>
         /// 建立DataTable将当前dataGridView中的数据读进DataTable中
         /// </summary>
@@ -637,7 +625,6 @@ namespace WordStatistics
             }
             return dt;
         }
-
 
         private int SortOrder_ = 0;
         /// <summary>
@@ -668,7 +655,6 @@ namespace WordStatistics
             
         }
 
-
         /// <summary>
         /// DataGridView显示行号
         /// </summary>
@@ -684,8 +670,11 @@ namespace WordStatistics
             //}
             //this.dataGridView1.Refresh();
             e.Row.HeaderCell.Value = (e.Row.Index + 1).ToString();
-            
         }
+
+        #endregion
+
+        #region 英文单词拼写检查
 
         private void btn_spellCheck_Click(object sender, EventArgs e)
         {
@@ -693,18 +682,22 @@ namespace WordStatistics
             string wordB = txb_wordB.Text;
             char[] word1 = wordA.ToCharArray();
             char[] word2 = wordB.ToCharArray();
-            int[,] ed = new int[word1.Length,word2.Length];//编辑距离数组
-            for (int i = 0; i < word1.Length; i++)
+            int len1 = word1.Length;
+            int len2 = word2.Length;
+            int[,] ed = new int[len1,len2];//编辑距离数组
+            //int roadLen = len1 > len2 ? len1 : len2;
+            string road = "";
+            for (int i = 0; i < len1; i++)
             {
-                for (int j = 0; j < word2.Length; j++)
+                for (int j = 0; j < len2; j++)
                 {
-                    
                     if (word1[i]!=word2[j])
                     {//当前字符不相等
                         //边界处理：对于A[j]≠B[k]若j = 1且k≠1则f[j, k] = f[j, k - 1] + 1若k = 1且j≠1则f[j, k] = f[j - 1, k] + 1若j = 1且k = 1则f[1, 1] = 1
                         if (i == 0 && j != 0)
                         {
                             ed[i, j] = ed[i, j - 1] + 1;
+                            //road += "'" + i + "'，'" + (j - 1) + "'→";
                         }
                         else if (i!=0&&j==0)
                         {
@@ -736,11 +729,25 @@ namespace WordStatistics
                         //边界处理：对于A[j] = B[k]若j = 1且k≠1则f[j, k] = f[j, k - 1]若k = 1且j≠1则f[j, k] = f[j - 1, k]若k = 1且j = 1则f[1, 1] = 0
                         if (i == 0&&j!=0)
                         {
-                            ed[i, j] = ed[i, j-1];
+                            if (word1[i] == word2[j - 1])
+                            {//处理类似于bbba和bbd
+                                ed[i, j] = ed[i, j - 1] + 1;
+                            }
+                            else
+                            {
+                                ed[i, j] = ed[i, j - 1];
+                            }
                         }
                         else if (i != 0 && j == 0)
                         {
-                            ed[i, j] = ed[i-1, j];
+                            if (word1[i-1] == word2[j])
+                            {//处理类似于bbba和bbd
+                                ed[i, j] = ed[i-1, j] + 1;
+                            }
+                            else
+                            {
+                                ed[i, j] = ed[i - 1, j];
+                            }
                         }
                         else if (i == 0 && j == 0)
                         {
@@ -750,25 +757,136 @@ namespace WordStatistics
                         {
                             //若A[j] = B[k]则f[j, k] = f[j - 1, k - 1]
                             ed[i, j] = ed[i - 1, j - 1];
-                        }
+                        } 
                     }
                 }
             }
             lab_result.Visible = true;
-            if (ed[word1.Length-1, word2.Length-1]==0)
+            if (ed[len1-1, len2-1]==0)
             {
                 lab_result.Text = "这两个单词的编辑距离为0,是相同的单词";
             }
             else
             {
-                lab_result.Text = "这两个单词是不同的单词，其编辑距离为" + ed[word1.Length-1, word2.Length-1];
+                lab_result.Text = "这两个单词是不同的单词，其编辑距离为" + ed[len1-1, len2-1];
             }
+
+            int m = len1 - 1;
+            int n = len2 - 1;
+            while ((m > 0 && n > 0)||(m == 0 && n > 0)||(m > 0 && n == 0)) {
+                if (word1[m] != word2[n])
+                {//当前字符不相等
+                 //边界处理：对于A[j]≠B[k]若j = 1且k≠1则f[j, k] = f[j, k - 1] + 1若k = 1且j≠1则f[j, k] = f[j - 1, k] + 1若j = 1且k = 1则f[1, 1] = 1
+                    if (m == 0 && n != 0)
+                    {
+                        //ed[i, j] = ed[i, j - 1] + 1;
+                        road = "(" + m + "，" + (n - 1) + ")→" + road;
+                        n = n - 1;
+                    }
+                    else if (m != 0 && n == 0)
+                    {
+                        //ed[i, j] = ed[i - 1, j] + 1;
+                        road = "(" + (m - 1) + "，" + n + ")→" + road;
+                        m--;
+                    }
+                    //else if (m == 0 && n == 0)
+                    //{
+                    //    ed[0, 0] = 1;
+                    //}
+                    else
+                    {
+                        //若A[j]≠B[k]则f[j, k]为f[j - 1, k - 1]、f[j - 1, k]、f[j, k - 1]三个数中最小数 + 1
+                        if (ed[m - 1, n - 1] <= ed[m - 1, n] && ed[m - 1, n - 1] <= ed[m, n - 1])
+                        {
+                            //ed[i, j] = ed[i - 1, j - 1] + 1;
+                            road = "(" + (m - 1) + "，" + (n - 1) + ")→" + road;
+                            m--;
+                            n--;
+                        }
+                        else if (ed[m - 1, n] <= ed[m - 1, n - 1] && ed[m - 1, n] <= ed[m, n - 1])
+                        {
+                            //ed[i, j] = ed[i - 1, j] + 1;
+                            road = "(" + (m - 1) + "，" + n + ")→" + road;
+                            m--;
+                        }
+                        else if (ed[m, n - 1] <= ed[m - 1, n - 1] && ed[m, n - 1] <= ed[m - 1, n])
+                        {
+                            //ed[i, j] = ed[i, j - 1] + 1;
+                            road = "(" + m + "，" + (n - 1) + ")→" + road;
+                            n--;
+                        }
+                    }
+                }
+                else
+                {
+                    //边界处理：对于A[j] = B[k]若j = 1且k≠1则f[j, k] = f[j, k - 1]若k = 1且j≠1则f[j, k] = f[j - 1, k]若k = 1且j = 1则f[1, 1] = 0
+                    if (m == 0 && n != 0)
+                    {
+                        //ed[i, j] = ed[i, j - 1];
+                        road = "(" + m + "，" + (n - 1) + ")→" + road;
+                        n--;
+                    }
+                    else if (m != 0 && n == 0)
+                    {
+                        //ed[i, j] = ed[i - 1, j];
+                        road = "(" + (m - 1) + "，" + n + ")→" + road;
+                        m--;
+                    }
+                    //else if (m == 0 && n == 0)
+                    //{
+                    //    ed[0, 0] = 0;
+                    //}
+                    else
+                    {
+                        //若A[j] = B[k]则f[j, k] = f[j - 1, k - 1]
+                        //ed[i, j] = ed[i - 1, j - 1];
+                        road = "(" + (m - 1) + "，" + (n - 1) + ")→" + road;
+                        m--;
+                        n--;
+                    }
+                }
+            }
+            road = road + "(" + (len1-1) + "," + (len2-1) + ")";
+            road = CutStr(road, 42);    //字符串按指定长度换行
+            lab_road.Visible = true;
+            lab_road.Text = road;
+        }
+
+        /// <summary>
+        /// 将字符串按指定长度换行
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <param name="len">换行长度</param>
+        /// <returns></returns>
+        public string CutStr(string str, int len)
+        {
+            string s = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                int r = i % len;
+                int last = (str.Length / len) * len;
+                if (i != 0 && i <= last)
+                {
+                    if (r == 0)
+                    {
+                        s += str.Substring(i - len, len) + "\n";
+                    }
+                }
+                else if (i > last)
+                {
+                    s += str.Substring(i - 1);
+                    break;
+                }
+            }
+            return s;
         }
 
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        #endregion
     }
 }
 
