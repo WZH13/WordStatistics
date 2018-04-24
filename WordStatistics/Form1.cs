@@ -697,7 +697,6 @@ namespace WordStatistics
                         if (i == 0 && j != 0)
                         {
                             ed[i, j] = ed[i, j - 1] + 1;
-                            //road += "'" + i + "'，'" + (j - 1) + "'→";
                         }
                         else if (i!=0&&j==0)
                         {
@@ -846,8 +845,10 @@ namespace WordStatistics
                     }
                 }
             }
-            road = road + "(" + (len1-1) + "," + (len2-1) + ")";
+            road = road + "(" + (len1 - 1) + "," + (len2 - 1) + ")";
+
             road = CutStr(road, 42);    //字符串按指定长度换行
+            road = "路径为：\n\n" + road;
             lab_road.Visible = true;
             lab_road.Text = road;
         }
@@ -887,6 +888,17 @@ namespace WordStatistics
         }
 
         #endregion
+
+        private void txb_wordA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ( (e.KeyChar >= 'A' && e.KeyChar <= 'Z') || (e.KeyChar >= 'a' && e.KeyChar <= 'z') || ((Keys)(e.KeyChar) == Keys.Back))
+            { e.Handled = false; }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("只能输入英文");
+            }
+        }
     }
 }
 
